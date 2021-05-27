@@ -1,24 +1,58 @@
 # README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column       | Type   | Options     |
+| ------------ | ------ | ----------- |
+| email        | string | null: false |
+| password     | string | null: false |
+| nickname     | string | null: false |
+| name_full    | string | null: false |
+| name_kana    | string | null: false |
+| birthday     | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :orders
 
-* Configuration
+## items テーブル(商品情報)
 
-* Database creation
+| Column         | Type         | Options                         |
+| -------------- | ------------- | -------------------------------|
+| image          |              | null: false                     |
+| item_name      | string       | null: false                     |
+| describe       | text         | null: false                     |
+| category       | integer      | null: false                     |
+| condition      | integer      | null: false                     |
+| about_delivery | integer      | null: false                     |
+| delivery_from  | integer      | null: false                     |
+| selling_price  | string       | null: false                     |
+| user           | reference    | null: false, foreign_kye : true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one :order
 
-* Services (job queues, cache servers, search engines, etc.)
+## orders テーブル
 
-* Deployment instructions
+| Column         | Type       | Options                         |
+| -------------- | ---------- | ------------------------------- |
+| card_number    | string     | null: false                     |
+| expiration_date| string     | null: false                     |
+| security_code  | string     | null: false                     |
+| zip_code       | string     | null: false                     |
+| prefecture     | string     | null: false                     |
+| city_town      | string     | null: false                     |
+| area_number    | string     | null: false                     |
+| area_building  | string     | null: false                     |
+| phone_number   | string     | null: false                     |
+| user           | references | null: false, foreign_kye : true |
+| item           | references | null: false, foreign_kye : true |
 
-* ...
+### Association
+
+- belongs_to :user
+- belongs_to :item
