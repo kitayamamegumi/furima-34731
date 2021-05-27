@@ -47,7 +47,7 @@
 | prefecture     | string     | null: false                     |
 | city_town      | string     | null: false                     |
 | area_number    | string     | null: false                     |
-| area_building  | string     | null: false                     |
+| building       | string     | null: false                     |
 | phone_number   | string     | null: false                     |
 | user           | references | null: false, foreign_kye : true |
 | item           | references | null: false, foreign_kye : true |
