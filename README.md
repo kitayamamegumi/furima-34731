@@ -3,14 +3,16 @@
 
 ## users テーブル
 
-| Column       | Type   | Options     |
-| ------------ | ------ | ----------- |
-| email        | string | null: false |
-| password     | string | null: false |
-| nickname     | string | null: false |
-| name_full    | string | null: false |
-| name_kana    | string | null: false |
-| birthday     | string | null: false |
+| Column             | Type   | Options                  |
+| ------------------ | ------ | -------------------------|
+| email              | string | null: false, unique: true|
+| encrypted_password | string | null: false              |
+| nickname           | string | null: false              |
+| family_name        | string | null: false              |
+| first_name         | string | null: false              |
+| family_name_kana   | string | null: false              |
+| first_name_kana    | string | null: false              |
+| birthday           | date   | null: false              |
 
 ### Association
 
@@ -19,17 +21,17 @@
 
 ## items テーブル(商品情報)
 
-| Column         | Type         | Options                         |
-| -------------- | ------------- | -------------------------------|
-| image          |              | null: false                     |
-| item_name      | string       | null: false                     |
-| describe       | text         | null: false                     |
-| category       | integer      | null: false                     |
-| condition      | integer      | null: false                     |
-| about_delivery | integer      | null: false                     |
-| delivery_from  | integer      | null: false                     |
-| selling_price  | string       | null: false                     |
-| user           | reference    | null: false, foreign_kye : true |
+| Column            | Type         | Options                         |
+| ----------------- | ------------ | --------------------------------|
+| name              | string       | null: false                     |
+| describe          | text         | null: false                     |
+| category_id       | integer      | null: false                     |
+| condition_id      | integer      | null: false                     |
+| delivery_pay_id   | integer      | null: false                     |
+| prefecture_id     | integer      | null: false                     |
+| delivery_day_id   | integer      | null: false                     |
+| selling_price     | integer      | null: false                     |
+| user              | reference    | null: false, foreign_kye : true |
 
 ### Association
 
@@ -40,15 +42,6 @@
 
 | Column         | Type       | Options                         |
 | -------------- | ---------- | ------------------------------- |
-| card_number    | string     | null: false                     |
-| expiration_date| string     | null: false                     |
-| security_code  | string     | null: false                     |
-| zip_code       | string     | null: false                     |
-| prefecture     | string     | null: false                     |
-| city_town      | string     | null: false                     |
-| area_number    | string     | null: false                     |
-| area_building  | string     | null: false                     |
-| phone_number   | string     | null: false                     |
 | user           | references | null: false, foreign_kye : true |
 | item           | references | null: false, foreign_kye : true |
 
@@ -56,3 +49,21 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one :shipping
+
+## shippings テーブル
+
+| Column           | Type       | Options                         |
+| ---------------- | ---------- | ------------------------------- |
+| zip_code         | string     | null: false                     |
+| prefecture_id    | integer    | null: false                     |
+| city_town        | string     | null: false                     |
+| area_number      | string     | null: false                     |
+| building         | string     |                                 |
+| phone_number     | string     | null: false                     |
+| order            | references | null: false, foreign_kye : true |
+
+### Association
+
+- belongs_to :order
+
