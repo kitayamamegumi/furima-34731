@@ -23,7 +23,7 @@
 
 | Column            | Type         | Options                         |
 | ----------------- | ------------ | --------------------------------|
-| item_name         | string       | null: false                     |
+| name              | string       | null: false                     |
 | describe          | text         | null: false                     |
 | category_id       | integer      | null: false                     |
 | condition_id      | integer      | null: false                     |
@@ -56,7 +56,7 @@
 | Column           | Type       | Options                         |
 | ---------------- | ---------- | ------------------------------- |
 | zip_code         | string     | null: false                     |
-| prefecture_id    | string     | null: false                     |
+| prefecture_id    | integer    | null: false                     |
 | city_town        | string     | null: false                     |
 | area_number      | string     | null: false                     |
 | building         | string     |                                 |
