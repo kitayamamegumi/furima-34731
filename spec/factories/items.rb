@@ -3,12 +3,12 @@ FactoryBot.define do
     image                 {Faker::Lorem.sentence}
     name                  {'写真'}
     discribe              {'夏'}
-    category_id           {'2'}
-    condition_id          {'2'}
-    delivery_pay_id       {'2'}
-    prefecture_id         {'2'}
-    delivery_day_id       {'2'}
-    selling_price         {'1000000'}
+    category_id           { 2 }
+    condition_id          { 2 }
+    delivery_pay_id       { 2 }
+    prefecture_id         { 2 }
+    delivery_day_id       { 2 }
+    selling_price         { 1000000 }
     association :user
 
     after(:build) do |item|
