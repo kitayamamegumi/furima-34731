@@ -28,7 +28,7 @@
       <% if current_user.id == @item.user.id %>
         <%# if item.order.present? #理由:後日orderテーブル作成後itemとのアソシエーションを記述しコメントアウトを外す%>
         <%# else %>
-    <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+    <%= link_to "商品の編集", edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
         <%# end %>
