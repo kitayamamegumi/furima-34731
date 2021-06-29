@@ -1,10 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-  before_action :item_user, only: [:index]
 
   def index
-    item_user
+    redirect_to root_path if current_user == @item.user || @item.order.present?
     @order_shipping = OrderShipping.new
   end
 

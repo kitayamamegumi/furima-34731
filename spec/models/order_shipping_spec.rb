@@ -4,11 +4,9 @@ RSpec.describe OrderShipping, type: :model do
   describe '配送先情報の保存' do
     before do
       user = FactoryBot.create(:user)
-      @order_shipping = FactoryBot.build(:order_shipping, user_id: user.id)
-    end
-    before do
       item = FactoryBot.create(:item)
-      @order_shipping = FactoryBot.build(:order_shipping, item_id: item.id)
+      @order_shipping = FactoryBot.build(:order_shipping, user_id: user.id, item_id: item.id)
+      sleep(1)
     end
 
     context '内容に問題ない場合' do
@@ -43,7 +41,7 @@ RSpec.describe OrderShipping, type: :model do
         expect(@order_shipping.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '地域が1だとitemは保存出来ない' do
-        @order_shipping.prefecture_id = '1'
+        @order_shipping.prefecture_id = 1
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -65,7 +63,7 @@ RSpec.describe OrderShipping, type: :model do
       it 'phone_numberが12桁以上では保存できないこと' do
         @order_shipping.phone_number = '090000000000'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid.')
+        expect(@order_shipping.errors.full_messages).to include("Phone number is invalid. Input only number")
       end
       it 'phone_numberが全角数字だと保存できないこと' do
         @order_shipping.phone_number = '０９０００００００'
@@ -86,6 +84,7 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.item_id = nil
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
