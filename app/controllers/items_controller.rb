@@ -35,14 +35,14 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-      @item.destroy
-      redirect_to root_path
+    @item.destroy
+    redirect_to root_path
   end
 
   private
 
   def redirect_to_show
-    redirect_to root_path unless current_user.id == @item.user_id
+    redirect_to root_path unless current_user.id == @item.user_id && @item.order.blank?
   end
 
   def set_item

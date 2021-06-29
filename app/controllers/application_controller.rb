@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
       username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
     end
   end
+
+  def item_user
+    redirect_to root_path if current_user == @item.user || @item.order.present?
+  end
 end
