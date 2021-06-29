@@ -55,7 +55,7 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberが10桁以上でないと保存できないこと' do
+      it 'phone_numberが9桁以下では保存できないこと' do
         @order_shipping.phone_number = '090000000'
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include('Phone number is too short (minimum is 10 characters)')
